@@ -1,25 +1,26 @@
 import java.util.*;
 
 class Solution {
-    static final String[] mapping = {"","","abc","def","ghi","jkl","mno","pqrs","tuv","wxyz"};
+    
+    private static final String[] mapping= {"","","abc","def","ghi","jkl","mno","pqrs","tuv","wxyz"};
     public List<String> letterCombinations(String digits) {
+        // 백트래킹
+        // 2&3 -> 3 * 3개의 경우의 수
         List<String> ans = new LinkedList<>();
         if(digits.length() == 0) return ans;
         
-        combination(ans, digits, 0, new StringBuilder());
+        combination(digits, ans, 0, new StringBuilder());
         return ans;
     }
-    
-    private void combination(List<String> ans,String digits, int order, StringBuilder sb){ // 백트래킹
-        if(order == digits.length()){ // 범위를 넘어서면 종료 
-            ans.add(new String(sb));
+    private void combination(String digits, List<String> ans, int order, StringBuilder sb){
+        if(order == digits.length()){
+            ans.add(sb.toString());
             return;
         }
-        
         String letter = mapping[digits.charAt(order) - '0'];
         for(int i = 0; i<letter.length(); i++){
             sb.append(letter.charAt(i));
-            combination(ans, digits, order + 1, sb);
+            combination(digits, ans, order + 1, sb);            
             sb.deleteCharAt(sb.length() - 1);
         }
     }
