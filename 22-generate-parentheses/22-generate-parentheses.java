@@ -1,43 +1,29 @@
 class Solution {
     
-    static String[] cases = {"(", ")"};
     public List<String> generateParenthesis(int n) {
         List<String> ans = new LinkedList<>();
         
-        combination(ans, 2*n, new StringBuilder());
+        combination(ans, n, new StringBuilder(), 0, 0);
         
         return ans;
     }
     
-    static void combination(List<String> ans, int remain, StringBuilder sb){
-        if(remain == 0){
-            if(isRight(sb.toString())){
-                ans.add(sb.toString());
-            }
+    static void combination(List<String> ans, int n, StringBuilder sb, int open, int close){
+        
+        if(sb.length() == n * 2){
+            ans.add(sb.toString());
             // System.out.println(sb.toString());
             return;
         }
-        
-        for(String s : cases){
-            sb.append(s);
-            combination(ans, remain - 1, sb);
+        if(open < n){
+            sb.append("(");
+            combination(ans, n, sb, open + 1, close);
             sb.deleteCharAt(sb.length() - 1);
         }
-    }
-    
-    static boolean isRight(String s){
-        Stack<Character> stack = new Stack<>();
-        for(int i = 0; i<s.length(); i++){
-            if(s.charAt(i) == '('){
-                stack.push('(');
-            }else if(s.charAt(i) == ')'){
-                if(stack.isEmpty() || stack.peek() != '(') return false;
-                stack.pop();
-            }
+        if(close < open){
+            sb.append(")");
+            combination(ans, n, sb, open, close + 1);
+            sb.deleteCharAt(sb.length() - 1);
         }
-        
-        if(!stack.isEmpty()) return false;
-        
-        return true;
     }
 }
