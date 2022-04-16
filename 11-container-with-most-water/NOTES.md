@@ -25,3 +25,21 @@
 위와 같은 케이스들을 제외해주려면 투포인터를 이용해서 양쪽 바의 높이 중에 높이가 더 작은 부분을 포인터를 오른쪽으로 옮겨주어야 한다. 그래야만 사각형의 넓이가 더 커질 수 있는 케이스들을 발견할 수 있다. 예를 들어 아래와 같은 케이스(사각형의 넓이가 더 커지는)를 발견할 수 있는 것이다.
 
 ![image](https://user-images.githubusercontent.com/53935439/163666567-53185999-83d3-4ba5-b58d-ea4627e51fd4.png)
+
+
+투 포인터 코드는 아래와 같다.
+```java
+        int left = 0;
+        int right = height.length - 1;
+        int ans = (right - left)*Math.min(height[left], height[right]);
+        System.out.println(ans);
+        
+        while(left < right){
+            if(height[left] < height[right]){
+                left++;
+            }else{
+                right--;
+            } 
+            ans = Math.max(ans, Math.min(height[left], height[right]) * (right - left));
+        }
+```
