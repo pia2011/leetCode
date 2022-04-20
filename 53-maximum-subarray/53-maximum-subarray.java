@@ -4,8 +4,11 @@ class Solution {
         int ans = Integer.MIN_VALUE;
         int sum = 0;
         for(int x : nums){
-            sum = Math.max(x, sum + x);
-            ans = Math.max(ans, sum);
+            sum += x;
+            if(x > sum) sum = x; 
+            
+            if(ans < sum)
+                ans = sum;
         }
         
         return ans;
