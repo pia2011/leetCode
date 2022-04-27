@@ -4,8 +4,9 @@ class Solution {
 
         LinkedList<Point> list = new LinkedList<>();
         for(int i = 0; i<arr.length; i++){
-            String s = Integer.toBinaryString(arr[i]);
-            int cnt = (int)s.chars().filter(c -> c == '1').count();
+            // String s = Integer.toBinaryString(arr[i]);
+            // int cnt = (int)s.chars().filter(c -> c == '1').count();
+            int cnt = Integer.bitCount(arr[i]);
             list.add(new Point(arr[i], cnt));
         } 
         
