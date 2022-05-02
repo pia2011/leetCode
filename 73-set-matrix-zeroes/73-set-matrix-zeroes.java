@@ -5,37 +5,44 @@ class Solution {
         n = matrix.length;
         m = matrix[0].length;
         
-        int tmp[][] = new int[n][m];
+        
+        boolean isCol = false;
+        
+        // step 1
         for(int i = 0; i<n; i++){
-            for(int j = 0; j<m; j++){
-                tmp[i][j] = matrix[i][j];
-            }
-        }
-        
-        
-        for(int i = 0; i<n; i++) {
-            for(int j = 0; j<m; j++) {
-                if(matrix[i][j] != 0) continue; 
+            
+            if(matrix[i][0] == 0) isCol = true;
                 
-                for(int dir = 0; dir<4; dir++)
-                    dfs(tmp, dir, i,j);
+            for(int j = 1; j<m; j++){
+                if(matrix[i][j] == 0){ 
+                    matrix[i][0] = 0;
+                    matrix[0][j] = 0; 
+                }    
             }
         }
         
-        for(int i = 0; i<n; i++){
-            for(int j = 0; j<m; j++){
-                matrix[i][j] = tmp[i][j];
+        // step 2
+        for(int i = 1; i<n; i++){
+            for(int j= 1; j<m; j++){
+                if(matrix[i][0] == 0 || matrix[0][j] == 0){
+                    matrix[i][j] = 0;
+                }
             }
         }
-    }
-    
-    static int dx[] = {0,1,0,-1};
-    static int dy[] = {1,0,-1,0};
-    static void dfs(int[][] arr, int dir, int x, int y){
-        if(x < 0 || y < 0 || x >= n || y >= m ) return;
-        System.out.println(x+" "+y);
-        arr[x][y] = 0;
         
-        dfs(arr, dir, x + dx[dir], y + dy[dir]);
+        // step 3
+        if(matrix[0][0] == 0){
+            for(int i = 0; i<m; i++){
+                matrix[0][i] = 0; 
+            }
+        }
+        
+        
+        // step 4
+        if(isCol){
+            for(int i = 0; i<n; i++){
+                matrix[i][0] = 0;
+            }
+        }
     }
 }
