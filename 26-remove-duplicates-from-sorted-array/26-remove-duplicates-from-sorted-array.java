@@ -1,25 +1,14 @@
 class Solution {
     public int removeDuplicates(int[] nums) {
-        // 유일한 값으로 오름차순
+        // 유일한 값으로 오름차순 : 이미 오름차순으로 정렬되어 있음
         
-        int ans = 0;
-               
-        HashSet<Integer> hs = new HashSet<>();
-        LinkedList<Integer> list = new LinkedList<>(); 
-        for(int x : nums){
-            if(!hs.contains(x)){
-                ans++;
-                list.add(x);
-                hs.add(x);
+        int idx = 1;
+        for(int i = 1; i<nums.length; i++){
+            if(nums[i] != nums[i - 1]) { // 값이 상승했으면
+                nums[idx++] = nums[i];
             }
         }
-
-        Collections.sort(list);
-
-        for(int i = 0; i<ans; i++){
-            nums[i] = list.get(i);
-        }
         
-        return ans;
+        return idx;
     }
 }
