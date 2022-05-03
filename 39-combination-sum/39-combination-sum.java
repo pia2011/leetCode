@@ -5,13 +5,13 @@ class Solution {
         
         List<List<Integer>> ansList = new LinkedList<>();
         
-        backTracking(candidates, target, ansList,0,0, new boolean[candidates.length], new LinkedList<>());
+        backTracking(candidates, target, ansList,0,0, new LinkedList<>());
         
         return ansList; 
         
     }
     
-    static void backTracking(int[] candidates,int target,List<List<Integer>> ansList,int start, int sum, boolean visited[], LinkedList<Integer> list){
+    static void backTracking(int[] candidates,int target,List<List<Integer>> ansList,int start, int sum, LinkedList<Integer> list){
         
         if(sum > target) return;
         if(sum == target) {
@@ -21,10 +21,8 @@ class Solution {
         
         
         for(int i = start; i<candidates.length; i++){
-
-
             list.add(candidates[i]);
-            backTracking(candidates, target, ansList, i,sum + candidates[i], visited, list);
+            backTracking(candidates, target, ansList, i,sum + candidates[i], list);
             list.remove(list.size() - 1);
         }
     }
