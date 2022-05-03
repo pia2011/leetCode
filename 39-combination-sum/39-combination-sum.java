@@ -15,7 +15,6 @@ class Solution {
         
         if(sum > target) return;
         if(sum == target) {
-            System.out.println("성공");
             ansList.add(new LinkedList<>(list));
             return;
         }
