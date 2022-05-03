@@ -15,7 +15,6 @@ class Solution {
                 temp = 1;        
             }
             prev = nums[i];
-            System.out.println(prev);
             
         }
         
