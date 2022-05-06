@@ -1,0 +1,27 @@
+class Solution {
+    private int n,m;
+    public void rotate(int[][] matrix) {
+        // 배열을 하나더 사용하지 말고, 시계방향으로 90도 돌려라
+        
+        n = matrix.length;
+        m = matrix[0].length;
+        
+        for(int i = 0; i<n; i++){
+            for(int j = i; j<m; j++){
+                int temp = 0;
+                temp = matrix[i][j];
+                matrix[i][j] = matrix[j][i];
+                matrix[j][i] = temp;
+            }
+        }
+        
+        for(int i = 0; i<n; i++){
+            for(int j = 0; j<m/2; j++){
+                int temp = 0;
+                temp = matrix[i][j];
+                matrix[i][j] = matrix[i][n - 1 - j];
+                matrix[i][n - 1 - j] = temp;
+            }
+        }
+    }
+}
