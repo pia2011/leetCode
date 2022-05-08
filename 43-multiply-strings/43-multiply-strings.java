@@ -7,9 +7,9 @@ class Solution {
         // 0이 발생하는 경우
         if(num1.equals("0") || num2.equals("0")) return "0";
         
-        if(n == 1 && m == 1) {
-            return String.valueOf(Integer.parseInt(num1) * Integer.parseInt(num2));
-        } 
+        // if(n == 1 && m == 1) {
+        //     return String.valueOf(Integer.parseInt(num1) * Integer.parseInt(num2));
+        // } 
         
         for(int i = n - 1; i>=0; i--){
             for(int j = m - 1; j>=0; j--){
