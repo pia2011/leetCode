@@ -14,10 +14,11 @@ class Solution {
                     dfs(board, word, 1, i, j);
                     visited[i][j] = false;
                 } 
+                if(flag) return true;
             }
         }
         
-        return flag;
+        return false;
     }
     
     private static int dx[] = {0,1,0,-1};
