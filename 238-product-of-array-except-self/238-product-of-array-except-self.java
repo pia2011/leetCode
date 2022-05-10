@@ -28,8 +28,6 @@ class Solution {
         }
     
         int ans[] = new int[nums.length];
-        if(zero1) System.out.println(1);
-        if(zero2) System.out.println(2);
         for(int i = 0; i<nums.length; i++){
             if(zero1){
                 if(isZero[i]){
