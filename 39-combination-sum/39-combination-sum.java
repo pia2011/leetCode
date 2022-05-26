@@ -1,29 +1,22 @@
 class Solution {
     public List<List<Integer>> combinationSum(int[] candidates, int target) {
-        
-        // target을 만들기 위한 조합(순서 상관 없음)
-        
+        // target을 만드는 모든 조합을 List에 담아 반환
         List<List<Integer>> ansList = new LinkedList<>();
+        dfs(ansList,candidates,target, 0, new LinkedList<>(), 0);
         
-        backTracking(candidates, target, ansList,0,0, new LinkedList<>());
-        
-        return ansList; 
-        
-    }
-    
-    static void backTracking(int[] candidates,int target,List<List<Integer>> ansList,int start, int sum, LinkedList<Integer> list){
-        
+        return ansList;
+    } 
+    static void dfs(List<List<Integer>> ansList,int[] candidates,int target, int sum, List<Integer> tempList, int start){
         if(sum > target) return;
-        if(sum == target) {
-            ansList.add(new LinkedList<>(list));
+        if(sum == target){
+            ansList.add(new LinkedList(tempList));
             return;
         }
-        
-        
         for(int i = start; i<candidates.length; i++){
-            list.add(candidates[i]);
-            backTracking(candidates, target, ansList, i,sum + candidates[i], list);
-            list.remove(list.size() - 1);
+            tempList.add(candidates[i]);
+            dfs(ansList, candidates, target, sum + candidates[i], tempList, i);
+            tempList.remove(tempList.size() - 1);
         }
+        
     }
 }
