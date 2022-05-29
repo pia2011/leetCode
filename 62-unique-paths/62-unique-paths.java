@@ -1,9 +1,8 @@
 class Solution {
-    
     public int uniquePaths(int m, int n) {
-        // 가능한 유일한 경로의 개수를 구해라
-
+        // get start -> finish unique path
         int arr[][] = new int[m][n];
+        
         for(int i = 0; i<n; i++) arr[0][i] = 1;
         for(int i = 0; i<m; i++) arr[i][0] = 1;
         
@@ -14,6 +13,7 @@ class Solution {
         }
         
         return arr[m - 1][n - 1];
+        
     }
 
 }
