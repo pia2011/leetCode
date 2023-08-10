@@ -3,30 +3,29 @@ import java.util.*;
 class Solution {
     public int findDuplicate(int[] nums) {
         
-//         int ans = 0;
+        int ans = 0;
         
-//         Set<Integer> hs = new HashSet<>();
-//         for(int num : nums){
-//             if(!hs.contains(num)){
-//                 hs.add(num);
-//             }else {
-//                 ans = num;
-//             }
-//         }        
+        int lt = 0; 
+        int rt = nums.length - 1; 
         
-//         return ans;
-        
-        int ans = -1;
-        int prev = -1;
-        Arrays.sort(nums);
-        for(int num : nums){
-            if(prev == num){ 
-                ans = num;
-                break;
+        while (lt <= rt) {
+            int mid = lt + (rt - lt) / 2;
+            int cnt = 0; 
+
+            for (int num : nums) {
+                if (num <= mid) {
+                    cnt++;
+                }
             }
-            prev = num;
+
+            if (cnt > mid) {
+                ans = mid;
+                rt = mid - 1; 
+            } else {
+                lt = mid + 1; 
+            }
         }
-        
-        return ans;
+
+        return ans; 
     }
 }
