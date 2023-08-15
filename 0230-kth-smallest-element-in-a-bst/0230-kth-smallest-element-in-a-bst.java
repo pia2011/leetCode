@@ -15,24 +15,22 @@
  */
 class Solution {
     
-    // k 번째 작은 값
-    
-    private List<Integer> list = new ArrayList<>();
-    public int kthSmallest(TreeNode root, int k) {
-        if(root == null) return -1;
-        int ret = -1;
+    // 재귀, 중위 순회 : 왼쪽 먼저
+    private Stack<Integer> stack = new Stack<>();
+    public int kthSmallest(TreeNode root, int k) {       
+        
         dfs(root, k);
         
-        Collections.sort(list);
-        
-        return list.get(k-1);
-    }
-    private void dfs(TreeNode node, int k){
-        if(node == null) return;
-        list.add(node.val);
-        
-        dfs(node.left, k);
-        dfs(node.right, k);
+        return stack.pop();
     }
     
+    private void dfs(TreeNode node, int k){
+        if(node == null || stack.size() >= k) return; // 기저 사례
+        dfs(node.left, k);
+        if(stack.size() >= k) return;
+        stack.push(node.val);
+        if(stack.size() >= k) return;
+        dfs(node.right, k);
+        if(stack.size() >= k) return;
+    }
 }
