@@ -65,7 +65,7 @@ class Solution {
     }
     
     
-    private boolean isFreshOrangeExists(){ // 싱싱한 오렌지가 있는가
+    private boolean isFreshOrangeExists(){ 
         
         for(int i = 0; i<n; i++){
             for(int j =0; j<m; j++){
