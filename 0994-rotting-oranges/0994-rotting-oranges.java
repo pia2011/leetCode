@@ -14,8 +14,9 @@ class Solution {
         board = grid;
         time = new int[n][m];
         
-        if(!isThereAnyFresh()) return 0;
-        if(!isThereAnyRotten()) return -1;
+        // 기저사례
+        if(!isThereAnyFresh()) return 0; // 신선한게 없으면 0초
+        if(!isThereAnyRotten()) return -1; // 썩은게 없으면 불가능
         
         for(int i = 0; i<n; i++) Arrays.fill(time[i], INF);
         
@@ -27,8 +28,8 @@ class Solution {
             }
         }
         
-        if(delCnt == 0) return 0;
-        else return isFreshOrangeExists() ? -1 : findMaxTime();
+        // if(delCnt == 0) return 0;
+        return isFreshOrangeExists() ? -1 : findMaxTime();
     }
     
     private boolean isThereAnyFresh(){
