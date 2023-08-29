@@ -28,7 +28,6 @@ class Solution {
             }
         }
         
-        // if(delCnt == 0) return 0;
         return isFreshOrangeExists() ? -1 : findMaxTime();
     }
     
@@ -64,7 +63,8 @@ class Solution {
         }
         return ret;
     }
-    private static int delCnt = 0;
+    
+    
     private boolean isFreshOrangeExists(){ // 싱싱한 오렌지가 있는가
         
         for(int i = 0; i<n; i++){
@@ -81,7 +81,6 @@ class Solution {
         Queue<Point> q = new LinkedList<>();
         q.add(new Point(x, y, 0));
         time[x][y] = 0;
-        delCnt++;
         while(!q.isEmpty()){
             Point p = q.poll();
             
@@ -91,7 +90,6 @@ class Solution {
                 if(!isIn(nx, ny)) continue;
                 if(time[nx][ny] <= p.cnt) continue;
                 if(board[nx][ny] == 1){ // 싱싱한 오렌지
-                    delCnt++;
                     time[nx][ny] = p.cnt + 1;
                     q.add(new Point(nx, ny, p.cnt + 1));    
                 }
